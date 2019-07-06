@@ -3,32 +3,21 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<ArrayList<String>> data = createData();
-
-        ArrayList<Iterator<String>> input = new ArrayList();
-        input.add(data.get(0).iterator());
-        input.add(data.get(1).iterator());
-        input.add(data.get(2).iterator());
-        input.add(data.get(3).iterator());
-        input.add(data.get(4).iterator());
-
-        List<Iterator<String>> output = solve(input);
+        List<Iterator<String>> output = solve(createData());
         System.out.println("result : " + '\n');
         printIter(output.get(0));
     }
 
-    public static void printIter(Iterator<String> input) {
-        while (input.hasNext()) {
-            System.out.println(input.next());
-        }
-        System.out.println();
-    }
-
-
-    // is executed ⌊lg(M)⌋ times
-    // 6 times for M = 110
-    // 3 times for M = 11
-    // 1 times for M = 1
+    /**
+     * This method merges multiple Iterators into one.
+     * This method is executed ⌊lg(M)⌋ times
+     * 6 times for M = 110
+     * 3 times for M = 11
+     * 1 times for M = 1
+     *
+     * @param input arrayList of the Iterators.
+     * @return a list that contains one iterator. Reason for using a List st is to be able to apply recursion
+     */
     public static List<Iterator<String>> solve(List<Iterator<String>> input) {
         int size = input.size();
         if (size == 1) {
@@ -46,7 +35,13 @@ public class Main {
         }
     }
 
-    // O(2*M*N) => O(M*N)
+    /**
+     * This method is takes two Iterators and merges them into one Iterator
+     * The complexity is O(2*M*N) => O(M*N)
+     * @param iterator1 First iterator
+     * @param iterator2 Second iterator
+     * @return Result of the merging
+     */
     public static Iterator<String> mergeTwoIteratosIntoOne(Iterator<String> iterator1,
         Iterator<String> iterator2) {
         ArrayList<String> output = new ArrayList();
@@ -95,7 +90,12 @@ public class Main {
         return output.iterator();
     }
 
-
+    /**
+     * Inserts a String into output if added does not contain it.
+     * @param added
+     * @param output
+     * @param string
+     */
     public static void insertString(HashSet added, ArrayList output, String string) {
         if (!added.contains(string)) {
             output.add(string);
@@ -103,53 +103,66 @@ public class Main {
         }
     }
 
-    public static ArrayList<ArrayList<String>> createData() {
-        ArrayList<String> a1 = new ArrayList();
-        ArrayList<String> a2 = new ArrayList();
-        ArrayList<String> a3 = new ArrayList();
-        ArrayList<String> a4 = new ArrayList();
-        ArrayList<String> a5 = new ArrayList();
+    /**
+     * This method creates data. It is hardcoded.
+     * @return an array list of Iterator over sorted strings
+     */
+    public static  ArrayList<Iterator<String>>  createData() {
+        ArrayList<String> arrayList1 = new ArrayList();
+        ArrayList<String> arrayList2 = new ArrayList();
+        ArrayList<String> arrayList3 = new ArrayList();
+        ArrayList<String> arrayList4 = new ArrayList();
+        ArrayList<String> arrayList5 = new ArrayList();
 
-        a1.add("vayvmhq");
-        a1.add("ngtaaoix");
-        a1.add("vrnatdggol");
-        a1.add("efcrsipdb");
+        arrayList1.add("vayvmhq");
+        arrayList1.add("ngtaaoix");
+        arrayList1.add("vrnatdggol");
+        arrayList1.add("efcrsipdb");
 
-        a2.add("iglyauowfz");
-        a2.add("evqcwehl");
-        a2.add("wvujqghne");
-        a2.add("cljfcaba");
+        arrayList2.add("iglyauowfz");
+        arrayList2.add("evqcwehl");
+        arrayList2.add("wvujqghne");
+        arrayList2.add("cljfcaba");
 
-        a3.add("ztgxgkvqrj");
-        a3.add("yartqqdm");
-        a3.add("klkwxoohgr");
-        a3.add("balxfik");
+        arrayList3.add("ztgxgkvqrj");
+        arrayList3.add("yartqqdm");
+        arrayList3.add("klkwxoohgr");
+        arrayList3.add("balxfik");
 
-        a4.add("camasbjhb");
-        a4.add("cxdtafze");
-        a4.add("qhmxjs");
-        a4.add("gbcmiepdd");
+        arrayList4.add("camasbjhb");
+        arrayList4.add("cxdtafze");
+        arrayList4.add("qhmxjs");
+        arrayList4.add("gbcmiepdd");
 
-        a5.add("qfckbyvtx");
-        a5.add("bfxioimm");
-        a5.add("whdlvouut");
-        a5.add("wnruywv");
+        arrayList5.add("qfckbyvtx");
+        arrayList5.add("bfxioimm");
+        arrayList5.add("whdlvouut");
+        arrayList5.add("wnruywv");
 
-        Collections.sort(a1);
-        Collections.sort(a2);
-        Collections.sort(a3);
-        Collections.sort(a4);
-        Collections.sort(a5);
+        Collections.sort(arrayList1);
+        Collections.sort(arrayList2);
+        Collections.sort(arrayList3);
+        Collections.sort(arrayList4);
+        Collections.sort(arrayList5);
 
-        ArrayList<ArrayList<String>> output = new ArrayList();
-        output.add(a1);
-        output.add(a2);
-        output.add(a3);
-        output.add(a4);
-        output.add(a5);
+        ArrayList<Iterator<String>> output = new ArrayList();
+        output.add(arrayList1.iterator());
+        output.add(arrayList2.iterator());
+        output.add(arrayList3.iterator());
+        output.add(arrayList4.iterator());
+        output.add(arrayList5.iterator());
 
         return output;
     }
 
-
+    /**
+     * Prints the data Iterator iterates over.
+     * @param input iterator
+     */
+    public static void printIter(Iterator<String> input) {
+        while (input.hasNext()) {
+            System.out.println(input.next());
+        }
+        System.out.println();
+    }
 }
